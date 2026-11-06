@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Population Growth Simulator | Computational Science</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="index.html"><span class="emblem">&#10022;</span><span>Computational Science</span></a>
+  <ul>
+    <li><a class="link" href="index.html">Home</a></li>
+    <li><a class="link" href="ecoreduce.html">EcoReduce</a></li>
+    <li><a class="link" href="population.html">Population</a></li>
+    <li><a class="link" href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+  <header class="page-head">
+    <p class="pill"><span class="emblem">&#10022;</span>Population Growth Simulator</p>
+    <h1 class="display shimmer">Population Growth Simulator</h1>
+    <p class="muted">Compare constrained and unconstrained growth and decay models. Enter an initial population, a rate, and a number of years to see how the population changes year by year.</p>
+  </header>
+
+  <div class="subnav">
+    <a class="chip" href="#simulator">Simulator</a>
+    <a class="chip" href="#table-section">Year-by-Year</a>
+    <a class="chip" href="#model-info">Model Information</a>
+  </div>
+
+  <div class="stack">
+    <section class="frame" id="simulator">
+      <h2 class="h2"><i class="fa-solid fa-sliders"></i>Simulation Input</h2>
+      <div class="g3">
+        <label>Initial Population<input type="number" id="initialInput" value="100" min="0" step="any"></label>
+        <label>Rate (%)<input type="number" id="rateInput" value="10" min="0" step="any"></label>
+        <label>Number of Years<input type="number" id="yearsInput" value="5" min="1" step="1"></label>
+      </div>
+      <p class="error" id="errorMsg" role="alert" hidden>Please enter valid values.</p>
+      <div class="btn-row">
+        <button id="runBtn" class="btn" type="button">Run Simulation</button>
+        <button id="resetBtn" class="btn ghost" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="g2" aria-live="polite">
+      <div class="frame stat lift"><h3><i class="fa-solid fa-arrow-trend-up"></i> Unconstrained Growth</h3><p class="num" id="resUG">0</p><p class="note">people after the simulation period.</p></div>
+      <div class="frame stat lift"><h3><i class="fa-solid fa-arrow-trend-down"></i> Unconstrained Decay</h3><p class="num" id="resUD">0</p><p class="note">people after the simulation period.</p></div>
+      <div class="frame stat lift"><h3><i class="fa-solid fa-seedling"></i> Constrained Growth</h3><p class="num" id="resCG">0</p><p class="note">people after the simulation period.</p></div>
+      <div class="frame stat lift"><h3><i class="fa-solid fa-leaf"></i> Constrained Decay</h3><p class="num" id="resCD">0</p><p class="note">people after the simulation period.</p></div>
+    </section>
+
+    <section class="frame" id="result-section">
+      <h2 class="h2"><i class="fa-solid fa-earth-asia"></i>Simulation Result</h2>
+      <p class="muted" id="resultText">Enter the values and click Run Simulation.</p>
+    </section>
+
+    <section class="frame" id="table-section">
+      <h2 class="h2"><i class="fa-solid fa-table"></i>Year-by-Year Simulation</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Unconstrained<br>Growth</th>
+              <th>Unconstrained<br>Decay</th>
+              <th>Constrained<br>Growth</th>
+              <th>Constrained<br>Decay</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="5" class="empty">Click Run Simulation to generate the population prediction.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="frame" id="model-info">
+      <h2 class="h2"><i class="fa-solid fa-lightbulb"></i>Model Information</h2>
+      <div class="info-grid">
+        <div><h4>1. Unconstrained Growth</h4><p>The population increases continuously without considering limiting factors.</p><code>P(t) = P0 · e^(rt)</code></div>
+        <div><h4>2. Unconstrained Decay</h4><p>The population decreases continuously without considering limiting factors.</p><code>P(t) = P0 · e^(−rt)</code></div>
+        <div><h4>3. Constrained Growth</h4><p>The population increases while considering the limitations of the population model.</p></div>
+        <div><h4>4. Constrained Decay</h4><p>The population decreases while considering the limitations of the population model.</p></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>Computational Science &copy; 2026 &mdash; Eastwoods Professional College of Science and Technology</p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/population.js"></script>
+</body>
+</html>

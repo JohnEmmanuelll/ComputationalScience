@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EcoReduce | Computational Science</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="index.html"><span class="emblem">&#10022;</span><span>Computational Science</span></a>
+  <ul>
+    <li><a class="link" href="index.html">Home</a></li>
+    <li><a class="link" href="ecoreduce.html">EcoReduce</a></li>
+    <li><a class="link" href="population.html">Population</a></li>
+    <li><a class="link" href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+  <header class="page-head">
+    <p class="pill"><span class="emblem">&#10022;</span>EcoReduce</p>
+    <h1 class="display shimmer">Household Waste Reduction Planner</h1>
+    <p class="muted">The Waste Analysis and Smart Recommendation System is a web-based application that analyzes waste data to calculate key sustainability metrics, identify the largest waste contributor, and provide personalized recommendations. It helps users understand their waste habits and encourages recycling, composting, and waste reduction through clear insights and real-time analysis.</p>
+  </header>
+
+  <div class="subnav">
+    <a class="chip" href="#planner">Waste Input</a>
+    <a class="chip" href="#results">Results</a>
+    <a class="chip" href="#process">Modeling Process</a>
+  </div>
+
+  <section class="frame sec" id="planner">
+    <h2 class="h2"><i class="fa-solid fa-trash-can"></i>Waste Input</h2>
+    <div class="g3">
+      <label>Plastic (kg)<input type="number" id="plastic" min="0" step="any" inputmode="decimal"></label>
+      <label>Paper (kg)<input type="number" id="paper" min="0" step="any" inputmode="decimal"></label>
+      <label>Glass (kg)<input type="number" id="glass" min="0" step="any" inputmode="decimal"></label>
+      <label>Metal (kg)<input type="number" id="metal" min="0" step="any" inputmode="decimal"></label>
+      <label>Organic (kg)<input type="number" id="organic" min="0" step="any" inputmode="decimal"></label>
+      <label>Residual (kg)<input type="number" id="residual" min="0" step="any" inputmode="decimal"></label>
+    </div>
+    <button class="btn wide" id="analyzeBtn" type="button">Analyze Waste</button>
+  </section>
+
+  <section id="results" class="sec">
+    <p class="frame muted" id="placeholder">Enter your daily waste in kilograms, then select Analyze Waste to see your results.</p>
+
+    <div id="analysisResults" class="stack">
+      <div class="g3">
+        <div class="frame stat lift"><i class="ic fa-solid fa-trash"></i><h3>Total Waste</h3><p class="num" id="total">0 kg</p><p class="small">Daily household waste generated.</p></div>
+        <div class="frame stat lift"><i class="ic fa-solid fa-calendar"></i><h3>Monthly Prediction</h3><p class="num" id="monthly">0 kg</p><p class="small">Estimated waste in 30 days.</p></div>
+        <div class="frame stat lift"><i class="ic fa-solid fa-earth-asia"></i><h3>Annual Prediction</h3><p class="num" id="annual">0 kg</p><p class="small">Estimated waste for one year.</p></div>
+      </div>
+
+      <div class="g2">
+        <div class="frame analysis lift">
+          <h2 class="h2"><i class="fa-solid fa-recycle"></i>Recycling Rate</h2>
+          <p class="num" id="recycle">0%</p>
+          <div class="progress"><div id="recycleBar"></div></div>
+          <p class="muted">The percentage shown above represents your Recycling Rate, indicating how much of your total waste can be recycled instead of being sent to landfills. Improving your recycling habits contributes to a cleaner environment, lowers landfill waste, and supports a more sustainable future.</p>
+        </div>
+        <div class="frame analysis lift">
+          <h2 class="h2"><i class="fa-solid fa-seedling"></i>Compost Potential</h2>
+          <p class="num" id="compost">0%</p>
+          <div class="progress"><div id="compostBar"></div></div>
+          <p class="muted">The percentage shown above represents your Compost Potential, indicating how much of your total waste consists of biodegradable materials that can be composted. Improving your composting practices enriches soil with natural nutrients, and supports a healthier and more sustainable environment.</p>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div class="frame analysis lift">
+          <h2 class="h2"><i class="fa-solid fa-bullseye"></i>Waste Reduction Goal</h2>
+          <p class="num" id="goal">0 kg</p>
+          <p class="muted">The value shown above represents your Waste Reduction Goal, indicating the target amount of waste you should reduce to improve your overall waste management. Achieving this goal helps minimize environmental impact, decreases landfill waste, and promotes more sustainable waste disposal habits.</p>
+        </div>
+        <div class="frame analysis lift">
+          <h2 class="h2"><i class="fa-solid fa-earth-asia"></i>Waste Reduction Score</h2>
+          <p class="num" id="score">0%</p>
+          <div class="progress"><div id="scoreBar"></div></div>
+          <p class="muted">The percentage shown above represents your Waste Reduction Score. Improving your waste reduction score helps conserve resources, reduce environmental pollution, and build more sustainable daily habits.</p>
+        </div>
+      </div>
+
+      <div class="frame analysis">
+        <h2 class="h2"><i class="fa-solid fa-chart-pie"></i>Largest Waste Contributor</h2>
+        <p class="num largest-name" id="largest">-</p>
+        <p class="muted">The material shown above is your Largest Waste Contributor, meaning it makes up the highest portion of your total waste generated. Identifying your largest waste source helps you understand which type of waste has the greatest impact on your overall waste production. Reducing the use of this material or improving how it is reused and recycled can significantly decrease your overall waste and support a cleaner, more sustainable environment.</p>
+      </div>
+
+      <div class="frame analysis">
+        <h2 class="h2"><i class="fa-solid fa-lightbulb"></i>Recommendation</h2>
+        <p class="muted" id="recommendation">Proper waste management starts with reducing waste, reusing materials whenever possible, and recycling items correctly. Practicing waste segregation and disposing of waste responsibly helps protect the environment and reduces the amount of waste sent to landfills. Composting biodegradable waste is another effective way to minimize waste while producing nutrient-rich material for plants and gardens. By making these habits part of your daily routine, you can contribute to a cleaner, healthier, and more sustainable community.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="sec">
+    <h2 class="display" style="font-size:clamp(1.8rem,4.4vw,3.2rem);margin-bottom:16px">Computational Science Modeling Process</h2>
+    <p class="muted">The EcoReduce system follows the Computational Science Modeling Process to develop an effective waste reduction recommendation system. It begins by collecting waste generation data, applies mathematical models to analyze the information, and implements the calculations in a web-based application. The system is then tested, validated, and refined to improve its accuracy and performance. The following are the detailed steps of the Computational Science Modeling Process used in the development of the EcoReduce system.</p>
+
+    <div class="steps">
+      <article class="frame step reveal"><span class="n">1</span><div><h3>Collect Data</h3><p class="muted">The system begins by collecting waste-related information from the user through an input form. Users enter the estimated amount of waste they generate each day, categorized into plastic, paper, food, glass, and metal waste. The collected data serves as the primary input for all calculations and analysis. Accurate data entry is important because it directly affects the reliability of the generated results and recommendations.</p></div></article>
+
+      <article class="frame step reveal"><span class="n">2</span><div><h3>Mathematical Model</h3>
+        <p class="muted">The system computes the waste management indicators using the following formulas:</p>
+        <ul class="formulas">
+          <li><span>Total Waste Generated:</span><code>TW = P + Pa + G + M + O + R</code></li>
+          <li><span>Recycling Rate (%):</span><code>RR = ((P + Pa + G + M) / TW) × 100</code></li>
+          <li><span>Compost Potential (%):</span><code>CP = (O / TW) × 100</code></li>
+          <li><span>Waste Reduction Goal (kg/day):</span><code>WRG = TW × Target Reduction Percentage</code><span>(If the target is 75%, then WRG = TW × 0.75)</span></li>
+          <li><span>Waste Reduction Score (%):</span><code>WRS = ((Recyclable Waste + Organic Waste) / TW) × 100</code><span>or</span><code>WRS = ((P + Pa + G + M + O) / TW) × 100</code></li>
+          <li><span>Largest Waste Contributor:</span><code>LWC = max(P, Pa, G, M, O, R)</code></li>
+        </ul>
+        <p class="muted">These formulas allow the system to measure recycling efficiency, composting potential, achievable waste reduction, and identify the waste category contributing the most to the total waste generated.</p></div></article>
+
+      <article class="frame step reveal"><span class="n">3</span><div><h3>Computer Implementation</h3><p class="muted">The mathematical formulas are implemented using JavaScript to automatically perform all computations once the user submits the waste data. The program calculates the total waste, recycling rate, compost potential, waste reduction goal, waste reduction score, and identifies the largest waste contributor. The computed values are displayed instantly on the dashboard together with corresponding descriptions and personalized recommendations based on the user's waste generation pattern.</p></div></article>
+
+      <article class="frame step reveal"><span class="n">4</span><div><h3>Simulation</h3><p class="muted">The system is tested using different sets of sample waste data that represent various household or community waste generation scenarios. Multiple simulations are conducted to observe how changes in waste composition affect the calculated indicators and recommendations. This process verifies that the formulas produce accurate and consistent results under different conditions. It also ensures that the recommendation engine responds appropriately to varying waste patterns.</p></div></article>
+
+      <article class="frame step reveal"><span class="n">5</span><div><h3>Validation</h3><p class="muted">The generated results are validated by comparing the computed values with manual calculations based on the same mathematical formulas. This verification process confirms that the system performs the computations correctly and consistently. Different test cases are used to ensure that the outputs remain accurate regardless of the input values. Validation also checks whether the personalized recommendations match the identified waste management issues.</p></div></article>
+
+      <article class="frame step reveal"><span class="n">6</span><div><h3>Refinement</h3><p class="muted">After testing and validation, improvements are made to the system based on the observed results and user feedback. The recommendation rules, descriptions, and calculation thresholds are adjusted to produce more meaningful and practical outputs. User interface enhancements are also implemented to improve readability, navigation, and overall user experience. Continuous refinement ensures that the EcoReduce system remains accurate, efficient, and useful for promoting sustainable waste management practices.</p></div></article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Computational Science &copy; 2026 &mdash; Eastwoods Professional College of Science and Technology</p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/ecoreduce.js"></script>
+</body>
+</html>
